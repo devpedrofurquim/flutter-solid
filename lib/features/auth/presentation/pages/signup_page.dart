@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test/core/theme/app_pallete.dart';
 import 'package:test/features/auth/presentation/widgets/auth_field.dart';
 import 'package:test/features/auth/presentation/widgets/auth_gradient_button.dart';
+import 'package:test/features/auth/presentation/widgets/auth_special_text.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -49,6 +51,12 @@ class _SignupPageState extends State<SignupPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        const Icon(
+                          Icons.app_registration_outlined,
+                          size: 100,
+                          color: Colors.grey,
+                        ),
+                        const SizedBox(height: 32),
                         const Text(
                           'Sign Up.',
                           style: TextStyle(
@@ -89,8 +97,10 @@ class _SignupPageState extends State<SignupPage> {
                         const SizedBox(height: 16),
                         AuthGradientButton(title: 'Sign In'),
                         const SizedBox(height: 16),
-                        RichText(
-                          text: TextSpan(text: 'Don\'t have an account?'),
+                        AuthSpecialText(
+                          title1: 'Don\'t have an account yet?',
+                          title2: 'Sign In',
+                          color: AppPallete.gradient2,
                         ),
                       ],
                     ),
