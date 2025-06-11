@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:test/core/theme/app_pallete.dart';
-import 'package:test/features/auth/presentation/pages/login_page.dart';
+import 'package:test/features/auth/presentation/pages/signup_page.dart';
 import 'package:test/features/auth/presentation/widgets/auth_field.dart';
 import 'package:test/features/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:test/features/auth/presentation/widgets/auth_special_text.dart';
 
-class SignupPage extends StatefulWidget {
-  static route() => MaterialPageRoute(builder: (context) => const SignupPage());
-  const SignupPage({super.key});
+class LoginPage extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const LoginPage());
+  const LoginPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
-  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -70,23 +69,21 @@ class _SignupPageState extends State<SignupPage> {
   // Widget is removed from the widget tree
   @override
   void dispose() {
-    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
 
-  void _onSignUpPressed() {
+  void _onSignInPressed() {
     if (_formKey.currentState!.validate()) {
       // Call use case or controller logic
-      debugPrint("SignUp: ${nameController.text}, ${emailController.text}");
+      debugPrint("SignUp: ${emailController.text}");
     }
   }
 
 @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -101,26 +98,17 @@ class _SignupPageState extends State<SignupPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Icon(
-                          Icons.app_registration,
+                          Icons.app_registration_outlined,
                           size: 100,
                           color: Colors.grey,
                         ),
                         const SizedBox(height: 32),
                         const Text(
-                          'Sign Up.',
+                          'Sign In.',
                           style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        const SizedBox(height: 32),
-                        AuthField(
-                          controller: nameController,
-                          hintText: 'Name',
-                          validator: (value) =>
-                              value!.isEmpty ? 'Enter your name' : null,
-                          obscureText: false,
-                          keyboardType: TextInputType.text,
                         ),
                         const SizedBox(height: 16),
                         AuthField(
@@ -142,17 +130,14 @@ class _SignupPageState extends State<SignupPage> {
                           keyboardType: TextInputType.visiblePassword,
                         ),
                         const SizedBox(height: 24),
-                        AuthGradientButton(
-                          title: 'Sign Up',
-                          onPressed: _onSignUpPressed,
-                        ),
+                        AuthGradientButton(title: 'Sign In', onPressed: _onSignInPressed,),
                         const SizedBox(height: 16),
                         AuthSpecialText(
-                          title1: 'Already have an account?',
-                          title2: 'Sign In',
+                          title1: 'Don\'t have an account?',
+                          title2: 'Sign Up',
                           color: AppPallete.gradient2,
                           onTap: () {
-                            Navigator.of(context).push(LoginPage.route());
+                            Navigator.of(context).push(SignupPage.route());
                           },
                         ),
                       ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AuthField extends StatelessWidget {
+class AuthField extends StatefulWidget {
   const AuthField({
     super.key,
     required this.hintText,
@@ -17,14 +17,40 @@ class AuthField extends StatelessWidget {
   final TextInputType keyboardType;
 
   @override
+  State<AuthField> createState() => _AuthFieldState();
+}
+
+class _AuthFieldState extends State<AuthField> {
+  late bool _obscure;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscure = widget.obscureText;
+  }
+
+  void _toggleVisibility() {
+    setState(() {
+      _obscure = !_obscure;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
-      validator: validator,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
+      controller: widget.controller,
+      validator: widget.validator,
+      obscureText: _obscure,
+      obscuringCharacter: '*',
+      keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: widget.hintText,
+        suffixIcon: widget.obscureText
+            ? IconButton(
+                icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility),
+                onPressed: _toggleVisibility,
+              )
+            : null,
       ),
     );
   }
