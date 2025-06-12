@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
   void _onSignInPressed() {
     if (_formKey.currentState!.validate()) {
       // Call use case or controller logic
-      debugPrint("SignUp: ${emailController.text}");
+      debugPrint('SignUp: ${emailController.text}');
     }
   }
 

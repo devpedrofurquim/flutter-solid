@@ -79,7 +79,7 @@ class _SignupPageState extends State<SignupPage> {
   void _onSignUpPressed() {
     if (_formKey.currentState!.validate()) {
       // Call use case or controller logic
-      debugPrint("SignUp: ${nameController.text}, ${emailController.text}");
+      debugPrint('SignUp: ${nameController.text}, ${emailController.text}');
     }
   }
 
@@ -155,7 +155,7 @@ class _SignupPageState extends State<SignupPage> {
                             Navigator.of(context).push(LoginPage.route());
                           },
                         ),
-                      ],
+                      ], 
                     ),
                   ),
                 ),
