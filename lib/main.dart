@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Blog App',
+      title: 'I Am Worth It',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
       home: const LoginPage(),
